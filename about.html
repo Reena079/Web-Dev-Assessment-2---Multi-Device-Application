@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | Brew & Bean Premium Coffee</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- FIX CSS PATH -->
+    <link rel="stylesheet" href="/CSS/about.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <span><i class="fas fa-truck"></i> Free Delivery on orders over $25</span>
+                <div class="top-links">
+                    <a href="#"><i class="fas fa-user"></i> My Account</a>
+                    <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+                    <span><i class="fas fa-phone"></i> 1-800-BREW-NOW</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <!-- Logo -->
+                <!-- FIX LINK -->
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-main">Brew & Bean</span>
+                        <span class="logo-tag">Premium Coffee</span>
+                    </div>
+                </a>
+
+                <!-- Main Navigation -->
+                <ul class="nav-menu">
+                    <!-- FIX ALL LINKS -->
+                    <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="/menu.html"><i class="fas fa-coffee"></i> Menu</a></li>
+                    <li><a href="/locations.html"><i class="fas fa-store"></i> Locations</a></li>
+                    <li><a href="/rewards.html"><i class="fas fa-crown"></i> Rewards</a></li>
+                    <li><a href="/about.html" class="active"><i class="fas fa-heart"></i> Our Story</a></li>
+                </ul>
+
+                <!-- Right Side Actions -->
+                <div class="nav-actions">
+                    <a href="#" class="nav-action-btn" id="search-btn">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <!-- FIX LINKS -->
+                    <a href="/cart" class="nav-action-btn cart-btn">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="/order" class="btn btn-primary">
+                        <i class="fas fa-bolt"></i> Order Now
+                    </a>
+                    <button class="menu-toggle" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Rest of your about.html content stays the same -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand Column -->
+                <div class="footer-column brand-column">
+                    <!-- FIX LINK -->
+                    <a href="/" class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-mug-hot"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-main">Brew & Bean</span>
+                            <span class="logo-tag">Premium Coffee</span>
+                        </div>
+                    </a>
+                    <p class="footer-description">Crafting exceptional coffee experiences since 2010. Ethical, sustainable, and delicious.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <!-- FIX LINKS -->
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/menu">Menu</a></li>
+                        <li><a href="/locations">Locations</a></li>
+                        <li><a href="/about">Our Story</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-phone"></i> 1-800-BREW-NOW</p>
+                    <p><i class="fas fa-envelope"></i> hello@brewandbean.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sun: 6AM-10PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Brew & Bean Premium Coffee. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ADD SHARED JAVASCRIPT -->
+    <script src="/js/main.js"></script>
+    <script>
+        // API Integration for about page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            // Fetch user data for cart count
+            fetch('/api/user/1')
+                .then(response => response.json())
+                .then(data => {
+                    const cartCount = document.querySelector('.cart-count');
+                    if (cartCount && data.stars) {
+                        cartCount.textContent = data.stars;
+                    }
+                })
+                .catch(error => console.log('API not available in demo'));
+        });
+    </script>
+</body>
+</html>
