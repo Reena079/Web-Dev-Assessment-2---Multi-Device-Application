@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brew & Bean Café | Artisan Coffee</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="scrollToTop()">
+                <i class="fas fa-coffee"></i>
+                <span>Brew & Bean</span>
+            </a>
+            
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active" onclick="handleNavClick(this)">Home</a>
+                <a href="#products" class="nav-link" onclick="handleNavClick(this)">Products</a>
+                <a href="#brewing" class="nav-link" onclick="handleNavClick(this)">Brewing Guide</a>
+                <a href="#subscription" class="nav-link" onclick="handleNavClick(this)">Subscription</a>
+                <a href="#" class="nav-link account-link" onclick="openAccountModal()">
+                    <i class="fas fa-user"></i>
+                    <span>Account</span>
+                </a>
+                <a href="#" class="nav-link cart-link" onclick="openCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container" style="display: flex; align-items: center; flex-wrap: wrap;">
+                <div class="hero-content">
+                    <h1 class="hero-title">Artisan Coffee, Perfectly Brewed</h1>
+                    <p class="hero-subtitle">Discover single-origin beans from around the world and master brewing techniques with our expert guides. Freshly roasted and delivered to your door.</p>
+                    <div class="hero-buttons">
+                        <a href="#products" class="btn btn-primary" onclick="handleNavClick(document.querySelector('a[href=\'#products\']'))">Shop Coffee</a>
+                        <a href="#subscription" class="btn btn-secondary" onclick="handleNavClick(document.querySelector('a[href=\'#subscription\']'))">Subscribe & Save</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="coffee-beans">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Fresh coffee beans">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section id="products" class="featured-section">
+            <div class="container">
+                <h2 class="section-title">Our Coffee Selection</h2>
+                
+                <!-- Filters -->
+                <div class="filters">
+                    <div class="filter-group">
+                        <button class="filter-btn active" onclick="filterProducts('all', this)">All Coffees</button>
+                        <button class="filter-btn" onclick="filterProducts('light', this)">Light Roast</button>
+                        <button class="filter-btn" onclick="filterProducts('medium', this)">Medium Roast</button>
+                        <button class="filter-btn" onclick="filterProducts('dark', this)">Dark Roast</button>
+                        <button class="filter-btn" onclick="filterProducts('single', this)">Single Origin</button>
+                        <button class="filter-btn" onclick="filterProducts('blend', this)">Blends</button>
+                    </div>
+                </div>
+                
+                <div class="products-grid" id="productsContainer">
+                    <!-- Products will be loaded here -->
+                </div>
+                
+                <div class="text-center">
+                    <button class="btn btn-outline" onclick="loadMoreProducts()">Load More</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">Our Story</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Coffee shop interior">
+                    </div>
+                    <div>
+                        <h3>Since 2010</h3>
+                        <p>Brew & Bean Café started as a small family-run roastery with a passion for perfect coffee. Today, we continue that tradition by sourcing the finest beans from sustainable farms around the world.</p>
+                        <p>Our master roasters carefully craft each batch to bring out the unique characteristics of every bean, ensuring you get the freshest, most flavorful coffee possible.</p>
+                        <p>We believe in transparency, sustainability, and creating connections through the shared love of great coffee.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brewing Guide -->
+        <section id="brewing" class="brewing-section">
+            <div class="container">
+                <h2 class="section-title">Master Your Brew</h2>
+                
+                <div class="brewing-methods">
+                    <div class="method-card">
+                        <div class="method-icon">
+                            <i class="fas fa-filter"></i>
+                        </div>
+                        <h3>Pour Over</h3>
+                        <p>Clean, bright flavors with precise control over extraction time and temperature.</p>
+                        <div class="method-details" style="text-align: left; margin-top: 1rem;">
+                            <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Key Steps:</h4>
+                            <ol style="padding-left: 1.5rem; margin-bottom: 1rem;">
+                                <li>Heat water to 200°F (93°C)</li>
+                                <li>Rinse paper filter with hot water</li>
+                                <li>Add coffee (medium grind)</li>
+                                <li>Bloom with water for 30 seconds</li>
+                                <li>Pour remaining water in circles</li>
+                            </ol>
+                            <p style="font-size: 0.9rem;"><strong>Perfect for:</strong> Light to medium roasts</p>
+                        </div>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-icon">
+                            <i class="fas fa-wine-bottle"></i>
+                        </div>
+                        <h3>French Press</h3>
+                        <p>Full-bodied, rich coffee with immersion brewing that extracts maximum flavor.</p>
+                        <div class="method-details" style="text-align: left; margin-top: 1rem;">
+                            <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Key Steps:</h4>
+                            <ol style="padding-left: 1.5rem; margin-bottom: 1rem;">
+                                <li>Coarse grind coffee beans</li>
+                                <li>Add to press with hot water</li>
+                                <li>Steep for 4 minutes</li>
+                                <li>Press plunger slowly</li>
+                                <li>Serve immediately</li>
+                            </ol>
+                            <p style="font-size: 0.9rem;"><strong>Perfect for:</strong> Dark roasts & blends</p>
+                        </div>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h3>Espresso</h3>
+                        <p>Concentrated coffee base for specialty drinks with rich crema and bold flavor.</p>
+                        <div class="method-details" style="text-align: left; margin-top: 1rem;">
+                            <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Key Steps:</h4>
+                            <ol style="padding-left: 1.5rem; margin-bottom: 1rem;">
+                                <li>Fine grind coffee beans</li>
+                                <li>Dose and tamp evenly</li>
+                                <li>Extract at 9 bars pressure</li>
+                                <li>Aim for 25-30 second shot</li>
+                                <li>36g output from 18g coffee</li>
+                            </ol>
+                            <p style="font-size: 0.9rem;"><strong>Perfect for:</strong> Specialty drinks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subscription Section -->
+        <section id="subscription" class="subscription-section">
+            <div class="container">
+                <h2 class="section-title" style="color: var(--white);">Coffee Subscription Plans</h2>
+                <p style="text-align: center; color: rgba(255, 255, 255, 0.8); max-width: 600px; margin: 0 auto 3rem;">
+                    Never run out of fresh coffee. Choose a plan that fits your brewing habits and save up to 30%.
+                </p>
+                
+                <div class="plans-grid">
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Casual Sip</h3>
+                            <div class="plan-price">$24.99<span>/month</span></div>
+                            <p>For the occasional coffee drinker</p>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> One 12oz bag per month</li>
+                            <li><i class="fas fa-check"></i> Free shipping</li>
+                            <li><i class="fas fa-check"></i> Brewing guide included</li>
+                            <li><i class="fas fa-check"></i> 15% member discount</li>
+                            <li><i class="fas fa-check"></i> Cancel anytime</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="subscribePlan('casual')">Subscribe Now</button>
+                    </div>
+                    
+                    <div class="plan-card featured">
+                        <div class="plan-header">
+                            <div style="background: var(--accent-color); color: var(--dark-color); padding: 5px 15px; border-radius: 20px; display: inline-block; margin-bottom: 1rem; font-weight: 600;">MOST POPULAR</div>
+                            <h3 class="plan-name">Daily Grind</h3>
+                            <div class="plan-price">$44.99<span>/month</span></div>
+                            <p>For daily coffee enthusiasts</p>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Two 12oz bags per month</li>
+                            <li><i class="fas fa-check"></i> Free express shipping</li>
+                            <li><i class="fas fa-check"></i> Brewing guide + equipment tips</li>
+                            <li><i class="fas fa-check"></i> 25% member discount</li>
+                            <li><i class="fas fa-check"></i> Exclusive blends access</li>
+                            <li><i class="fas fa-check"></i> Cancel anytime</li>
+                        </ul>
+                        <button class="btn btn-secondary" style="width: 100%;" onclick="subscribePlan('daily')">Subscribe Now</button>
+                    </div>
+                    
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Connoisseur</h3>
+                            <div class="plan-price">$79.99<span>/month</span></div>
+                            <p>For the true coffee lover</p>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Four 12oz bags per month</li>
+                            <li><i class="fas fa-check"></i> Free overnight shipping</li>
+                            <li><i class="fas fa-check"></i> Monthly tasting kit</li>
+                            <li><i class="fas fa-check"></i> 30% member discount</li>
+                            <li><i class="fas fa-check"></i> First access to new releases</li>
+                            <li><i class="fas fa-check"></i> Personal coffee consultant</li>
+                            <li><i class="fas fa-check"></i> Cancel anytime</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="subscribePlan('connoisseur')">Subscribe Now</button>
+                    </div>
+                </div>
+                
+                <!-- Subscription Calculator -->
+                <div class="subscription-calculator" style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: var(--border-radius); margin-top: 4rem;">
+                    <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--white);">Calculate Your Savings</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9);">Coffee per month (oz)</label>
+                            <input type="range" min="8" max="48" value="12" class="form-control" id="coffeeAmount" oninput="updateCalculator()" style="width: 100%;">
+                            <div style="text-align: center; margin-top: 0.5rem; color: var(--white); font-weight: 600;" id="amountDisplay">12 oz</div>
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9);">Delivery frequency</label>
+                            <select class="form-control" id="deliveryFrequency" onchange="updateCalculator()">
+                                <option value="monthly">Monthly</option>
+                                <option value="biweekly">Every 2 weeks</option>
+                                <option value="weekly">Weekly</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9);">Roast preference</label>
+                            <select class="form-control" id="roastPreference">
+                                <option value="light">Light Roast</option>
+                                <option value="medium" selected>Medium Roast</option>
+                                <option value="dark">Dark Roast</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="text-align: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.15); border-radius: var(--border-radius);">
+                        <h4 style="color: var(--white); margin-bottom: 0.5rem;">Estimated Monthly Cost</h4>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent-color);" id="calculatedPrice">$24.99</div>
+                        <p style="color: rgba(255, 255, 255, 0.8); margin-top: 0.5rem;" id="savingsInfo">Save 20% compared to regular price</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Brew & Bean Café</h3>
+                    <p>Artisan coffee roasters since 2010. Committed to sustainable sourcing, ethical trade, and perfect brewing techniques.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home" onclick="scrollToTop(); return false;">Home</a></li>
+                        <li><a href="#products" onclick="handleNavClick(document.querySelector('a[href=\'#products\']')); return false;">Products</a></li>
+                        <li><a href="#brewing" onclick="handleNavClick(document.querySelector('a[href=\'#brewing\']')); return false;">Brewing Guide</a></li>
+                        <li><a href="#subscription" onclick="handleNavClick(document.querySelector('a[href=\'#subscription\']')); return false;">Subscription</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Coffee Street, Brew City</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@brewbean.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 7am-7pm, Sat-Sun: 8am-6pm</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Brew & Bean Café. All rights reserved. | <a href="#" style="color: rgba(255, 255, 255, 0.7);" onclick="openPrivacyModal(); return false;">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Account Modal -->
+    <div class="modal-overlay" id="accountModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Your Account</h2>
+                <button class="close-modal" onclick="closeAccountModal()">&times;</button>
+            </div>
+            <div class="modal-content">
+                <!-- Login Form -->
+                <div class="auth-forms">
+                    <div class="auth-form active" id="loginForm">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--dark-color);">Login</h3>
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email">
+                            <div class="form-error" id="loginEmailError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password">
+                            <div class="form-error" id="loginPasswordError"></div>
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="login()">Login</button>
+                        <div class="form-switch">
+                            Don't have an account? <button onclick="showRegisterForm()">Register here</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Register Form -->
+                    <div class="auth-form" id="registerForm">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--dark-color);">Register</h3>
+                        <div class="form-group">
+                            <label for="registerName">Full Name</label>
+                            <input type="text" id="registerName" class="form-control" placeholder="Enter your full name">
+                            <div class="form-error" id="registerNameError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Email</label>
+                            <input type="email" id="registerEmail" class="form-control" placeholder="Enter your email">
+                            <div class="form-error" id="registerEmailError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Password</label>
+                            <input type="password" id="registerPassword" class="form-control" placeholder="Create a password (min. 6 characters)">
+                            <div class="form-error" id="registerPasswordError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerConfirmPassword">Confirm Password</label>
+                            <input type="password" id="registerConfirmPassword" class="form-control" placeholder="Confirm your password">
+                            <div class="form-error" id="registerConfirmPasswordError"></div>
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="register()">Create Account</button>
+                        <div class="form-switch">
+                            Already have an account? <button onclick="showLoginForm()">Login here</button>
+                        </div>
+                    </div>
+                    
+                    <!-- User Dashboard -->
+                    <div class="user-dashboard" id="userDashboard">
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3 id="userName">John Doe</h3>
+                            <p id="userEmail">john@example.com</p>
+                            <p><small>Member since: <span id="memberSince">January 2024</span></small></p>
+                        </div>
+                        
+                        <div style="margin: 2rem 0;">
+                            <h4 style="margin-bottom: 1rem;">Your Subscription</h4>
+                            <div style="background: var(--light-color); padding: 1rem; border-radius: var(--border-radius);">
+                                <p id="subscriptionStatus"><strong>Status:</strong> No active subscription</p>
+                                <button class="btn btn-outline" style="width: 100%; margin-top: 1rem;" onclick="closeAccountModal(); handleNavClick(document.querySelector('a[href=\'#subscription\']'))">Browse Plans</button>
+                            </div>
+                        </div>
+                        
+                        <div style="margin: 2rem 0;">
+                            <h4 style="margin-bottom: 1rem;">Recent Orders</h4>
+                            <div id="recentOrders">
+                                <p style="text-align: center; color: var(--text-light);">No recent orders</p>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-secondary" style="width: 100%;" onclick="logout()">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Modal -->
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Privacy Policy</h2>
+                <button class="close-modal" onclick="closePrivacyModal()">&times;</button>
+            </div>
+            <div class="modal-content">
+                <p>Last updated: January 2024</p>
+                
+                <h3 style="margin-top: 1.5rem;">Information We Collect</h3>
+                <p>We collect information you provide directly to us, such as when you create an account, make a purchase, or contact us for support.</p>
+                
+                <h3 style="margin-top: 1.5rem;">How We Use Your Information</h3>
+                <p>We use the information we collect to provide, maintain, and improve our services, to process your transactions, and to communicate with you.</p>
+                
+                <h3 style="margin-top: 1.5rem;">Data Security</h3>
+                <p>We implement appropriate technical and organizational security measures to protect your personal information.</p>
+                
+                <h3 style="margin-top: 1.5rem;">Contact Us</h3>
+                <p>If you have any questions about this Privacy Policy, please contact us at privacy@brewbean.com.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // APPLICATION STATE
+        let appState = {
+            currentUser: null,
+            cart: [],
+            products: [],
+            currentFilter: 'all',
+            productsLoaded: 0
+        };
+
+        //PRODUCT IMAGES 
+        const productImages = [
+            "https://images.unsplash.com/photo-1648134615918-c0a684a9c5bb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8RXRoaW9waWFuJTIwWWlyZ2FjaGVmZmV8ZW58MHx8MHx8fDA%3D", // Ethiopian
+            "https://media.istockphoto.com/id/2152221770/photo/coffee-beans-on-colombian-flag.webp?a=1&b=1&s=612x612&w=0&k=20&c=6k8-6Mq_kduzqzGqngbzlbjVhYEtGLyco1Bzsp7lkL4=", // Colombian
+            "https://images.unsplash.com/photo-1762264498959-e1b548ecb239?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aXRhbGlhbiUyMHJvYXN0fGVufDB8fDB8fHww", // Italian
+            "https://images.unsplash.com/photo-1606197180326-bd0bae1eec71?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3VtYXRyYSUyMGNvZmZlZXxlbnwwfHwwfHx8MA%3D%3D", // Sumatra
+            "https://plus.unsplash.com/premium_photo-1675435644687-562e8042b9db?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29mZmVlfGVufDB8fDB8fHww", // Costa Rican
+            "https://images.unsplash.com/photo-1766896017102-1032044885c3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8QnJlYWtmYXN0JTIwQmxlbmQlMjBTbW9vdGglMjBhbmQlMjBiYWxhbmNlZCUyMG1vcm5pbmclMjBjb2ZmZWUlMjB3aXRoJTIwY2hvY29sYXRlJTIwYW5kJTIwbnV0JTIwZmxhdm9ycy58ZW58MHx8MHx8fDA%3D", // Breakfast Blend
+            "https://media.istockphoto.com/id/2252589311/photo/coffee-dessert-hd-stock-photo.webp?a=1&b=1&s=612x612&w=0&k=20&c=jkyGlhj43IWgXj7fsvgzABwuMZg-X1nnaC_tGsP1WGA=", // French Roast
+            "https://images.unsplash.com/photo-1664391838466-fdabbd1163e9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGd1YXRlbWFsYW4lMjBjb2ZmZWV8ZW58MHx8MHx8fDA%3D"  // Guatemalan
+        ];
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load cart from localStorage
+            loadCart();
+            
+            // Initialize products
+            initializeProducts();
+            
+            // Load initial products
+            loadProducts();
+            
+            // Initialize calculator
+            updateCalculator();
+            
+            // Check if user is logged in
+            checkLoginStatus();
+            
+            // Setup navigation
+            setupNavigation();
+            
+            // Setup nav toggle
+            setupNavToggle();
+        });
+
+        // ===== NAVIGATION FUNCTIONS =====
+        function setupNavToggle() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    if (navMenu.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+        }
+
+        function handleNavClick(element) {
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            // Close mobile menu if open
+            const navMenu = document.getElementById('navMenu');
+            const toggleIcon = document.querySelector('.nav-toggle i');
+            if (navMenu && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                if (toggleIcon) {
+                    toggleIcon.classList.remove('fa-times');
+                    toggleIcon.classList.add('fa-bars');
+                }
+            }
+        }
+
+        function setupNavigation() {
+            // Handle scroll to update active nav
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section[id]');
+                const scrollPos = window.scrollY + 100;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            handleNavClick(document.querySelector('a[href="#home"]'));
+        }
+
+        // ===== PRODUCT DATA =====
+        function initializeProducts() {
+            appState.products = [
+                {
+                    id: 1,
+                    name: "Ethiopian Yirgacheffe",
+                    description: "Bright and fruity with notes of blueberry, lemon, and jasmine. Light roast.",
+                    price: 18.99,
+                    roast: "light",
+                    type: "single",
+                    image: productImages[0]
+                },
+                {
+                    id: 2,
+                    name: "Colombian Supremo",
+                    description: "Medium roast with caramel sweetness, nutty notes, and balanced acidity.",
+                    price: 16.99,
+                    roast: "medium",
+                    type: "single",
+                    image: productImages[1]
+                },
+                {
+                    id: 3,
+                    name: "Italian Roast",
+                    description: "Dark and bold with chocolate undertones and a smoky finish.",
+                    price: 15.99,
+                    roast: "dark",
+                    type: "blend",
+                    image: productImages[2]
+                },
+                {
+                    id: 4,
+                    name: "Sumatra Mandheling",
+                    description: "Full-bodied with earthy, spicy notes and low acidity. Dark roast.",
+                    price: 19.99,
+                    roast: "dark",
+                    type: "single",
+                    image: productImages[3]
+                },
+                {
+                    id: 5,
+                    name: "Costa Rican Tarrazu",
+                    description: "Bright acidity with honey sweetness and citrus notes. Light roast.",
+                    price: 17.99,
+                    roast: "light",
+                    type: "single",
+                    image: productImages[4]
+                },
+                {
+                    id: 6,
+                    name: "Breakfast Blend",
+                    description: "Smooth and balanced morning coffee with chocolate and nut flavors.",
+                    price: 14.99,
+                    roast: "medium",
+                    type: "blend",
+                    image: productImages[5]
+                },
+                {
+                    id: 7,
+                    name: "French Roast",
+                    description: "Very dark with intense smoky character and bittersweet chocolate notes.",
+                    price: 16.99,
+                    roast: "dark",
+                    type: "blend",
+                    image: productImages[6]
+                },
+                {
+                    id: 8,
+                    name: "Guatemalan Antigua",
+                    description: "Complex with chocolate, spice, and floral notes. Medium roast.",
+                    price: 18.99,
+                    roast: "medium",
+                    type: "single",
+                    image: productImages[7]
+                }
+            ];
+        }
+
+        // ===== PRODUCT FUNCTIONS =====
+        function loadProducts() {
+            const container = document.getElementById('productsContainer');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            let filteredProducts = appState.products;
+            
+            // Apply filter
+            if (appState.currentFilter !== 'all') {
+                filteredProducts = appState.products.filter(product => {
+                    if (appState.currentFilter === 'light' || appState.currentFilter === 'medium' || appState.currentFilter === 'dark') {
+                        return product.roast === appState.currentFilter;
+                    } else if (appState.currentFilter === 'single') {
+                        return product.type === 'single';
+                    } else if (appState.currentFilter === 'blend') {
+                        return product.type === 'blend';
+                    }
+                    return true;
+                });
+            }
+            
+            // Limit display to first 8 products initially
+            const displayProducts = filteredProducts.slice(0, Math.min(8, appState.productsLoaded || 8));
+            
+            if (displayProducts.length === 0) {
+                container.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; padding: 3rem; color: var(--text-light);">No products found with the selected filter.</p>';
+                return;
+            }
+            
+            displayProducts.forEach((product, index) => {
+                const productCard = createProductCard(product, index);
+                container.appendChild(productCard);
+            });
+            
+            appState.productsLoaded = displayProducts.length;
+        }
+
+        function loadMoreProducts() {
+            const container = document.getElementById('productsContainer');
+            if (!container) return;
+            
+            let filteredProducts = appState.products;
+            
+            if (appState.currentFilter !== 'all') {
+                filteredProducts = appState.products.filter(product => {
+                    if (appState.currentFilter === 'light' || appState.currentFilter === 'medium' || appState.currentFilter === 'dark') {
+                        return product.roast === appState.currentFilter;
+                    } else if (appState.currentFilter === 'single') {
+                        return product.type === 'single';
+                    } else if (appState.currentFilter === 'blend') {
+                        return product.type === 'blend';
+                    }
+                    return true;
+                });
+            }
+            
+            // Load next 4 products
+            const nextProducts = filteredProducts.slice(appState.productsLoaded, appState.productsLoaded + 4);
+            
+            if (nextProducts.length === 0) {
+                showNotification('No more products to load!');
+                return;
+            }
+            
+            nextProducts.forEach((product, index) => {
+                const productCard = createProductCard(product, appState.productsLoaded + index);
+                container.appendChild(productCard);
+            });
+            
+            appState.productsLoaded += nextProducts.length;
+        }
+
+        function filterProducts(filter, button) {
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+            
+            // Update filter state
+            appState.currentFilter = filter;
+            appState.productsLoaded = 0;
+            
+            // Reload products
+            loadProducts();
+            
+            // Scroll to products section
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function createProductCard(product, index) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-description">${product.description}</p>
+                    <div class="product-meta">
+                        <span class="product-price">$${product.price.toFixed(2)}</span>
+                        <span class="product-roast">${product.roast} roast</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        // ===== CART FUNCTIONS =====
+        function loadCart() {
+            const savedCart = localStorage.getItem('brewBeanCart');
+            if (savedCart) {
+                try {
+                    appState.cart = JSON.parse(savedCart);
+                    updateCartCount();
+                } catch (e) {
+                    appState.cart = [];
+                }
+            }
+        }
+
+        function saveCart() {
+            localStorage.setItem('brewBeanCart', JSON.stringify(appState.cart));
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const countElement = document.querySelector('.cart-count');
+            if (countElement) {
+                const totalItems = appState.cart.reduce((total, item) => total + (item.quantity || 1), 0);
+                countElement.textContent = totalItems;
+            }
+        }
+
+        function addToCart(productId) {
+            const product = appState.products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const existingItem = appState.cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity = (existingItem.quantity || 1) + 1;
+            } else {
+                appState.cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1,
+                    image: product.image
+                });
+            }
+            
+            saveCart();
+            showNotification(`${product.name} added to cart!`);
+        }
+
+        function openCart() {
+            if (appState.cart.length === 0) {
+                showNotification('Your cart is empty!');
+                return;
+            }
+            
+            // Simple cart display
+            let cartContent = 'Your Cart:\n\n';
+            let total = 0;
+            
+            appState.cart.forEach(item => {
+                const itemTotal = item.price * (item.quantity || 1);
+                cartContent += `${item.name} x${item.quantity || 1}: $${itemTotal.toFixed(2)}\n`;
+                total += itemTotal;
+            });
+            
+            cartContent += `\nTotal: $${total.toFixed(2)}`;
+            
+            if (confirm(cartContent + '\n\nProceed to checkout?')) {
+                showNotification('Checkout functionality would be implemented here!');
+                // In a real app, this would redirect to checkout
+            }
+        }
+
+        // AUTHENTICATION FUNCTIONS
+        function checkLoginStatus() {
+            const savedUser = localStorage.getItem('brewBeanUser');
+            if (savedUser) {
+                try {
+                    appState.currentUser = JSON.parse(savedUser);
+                    updateAccountDisplay();
+                } catch (e) {
+                    appState.currentUser = null;
+                }
+            }
+        }
+
+        function login() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            
+            // Clear previous errors
+            clearErrors();
+            
+            // Simple validation
+            if (!email || !password) {
+                showError('loginEmailError', 'Please fill in all fields');
+                return;
+            }
+            
+            // Mock login - in real app, this would be an API call
+            if (password.length < 6) {
+                showError('loginPasswordError', 'Password must be at least 6 characters');
+                return;
+            }
+            
+            // Simulate API call delay
+            showNotification('Logging in...');
+            
+            setTimeout(() => {
+                // Mock successful login
+                appState.currentUser = {
+                    id: 1,
+                    name: email.split('@')[0],
+                    email: email,
+                    joined: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+                };
+                
+                localStorage.setItem('brewBeanUser', JSON.stringify(appState.currentUser));
+                updateAccountDisplay();
+                closeAccountModal();
+                showNotification('Login successful!');
+            }, 1000);
+        }
+
+        function register() {
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const password = document.getElementById('registerPassword').value.trim();
+            const confirmPassword = document.getElementById('registerConfirmPassword').value.trim();
+            
+            // Clear previous errors
+            clearErrors();
+            
+            // Validation
+            let hasError = false;
+            
+            if (!name || !email || !password || !confirmPassword) {
+                showError('registerNameError', 'Please fill in all fields');
+                hasError = true;
+            }
+            
+            if (password.length < 6) {
+                showError('registerPasswordError', 'Password must be at least 6 characters');
+                hasError = true;
+            }
+            
+            if (password !== confirmPassword) {
+                showError('registerConfirmPasswordError', 'Passwords do not match');
+                hasError = true;
+            }
+            
+            if (hasError) return;
+            
+            // Simulate API call
+            showNotification('Creating account...');
+            
+            setTimeout(() => {
+                // Mock successful registration
+                appState.currentUser = {
+                    id: Date.now(),
+                    name: name,
+                    email: email,
+                    joined: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+                };
+                
+                localStorage.setItem('brewBeanUser', JSON.stringify(appState.currentUser));
+                updateAccountDisplay();
+                showLoginForm(); // Switch to login form
+                showNotification('Account created successfully! Please login.');
+            }, 1000);
+        }
+
+        function logout() {
+            appState.currentUser = null;
+            localStorage.removeItem('brewBeanUser');
+            updateAccountDisplay();
+            closeAccountModal();
+            showNotification('Logged out successfully');
+        }
+
+        function updateAccountDisplay() {
+            const accountLink = document.querySelector('.account-link');
+            const userDashboard = document.getElementById('userDashboard');
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            
+            if (appState.currentUser) {
+                // User is logged in
+                if (accountLink) {
+                    accountLink.innerHTML = `<i class="fas fa-user"></i><span>${appState.currentUser.name}</span>`;
+                }
+                
+                if (userDashboard) {
+                    document.getElementById('userName').textContent = appState.currentUser.name;
+                    document.getElementById('userEmail').textContent = appState.currentUser.email;
+                    document.getElementById('memberSince').textContent = appState.currentUser.joined;
+                    userDashboard.classList.add('active');
+                    if (loginForm) loginForm.classList.remove('active');
+                    if (registerForm) registerForm.classList.remove('active');
+                }
+            } else {
+                // User is not logged in
+                if (accountLink) {
+                    accountLink.innerHTML = `<i class="fas fa-user"></i><span>Account</span>`;
+                }
+                
+                if (userDashboard) {
+                    userDashboard.classList.remove('active');
+                    if (loginForm) loginForm.classList.add('active');
+                }
+            }
+        }
+
+        // ===== MODAL FUNCTIONS =====
+        function openAccountModal() {
+            document.getElementById('accountModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAccountModal() {
+            document.getElementById('accountModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            clearErrors();
+        }
+
+        function openPrivacyModal() {
+            document.getElementById('privacyModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePrivacyModal() {
+            document.getElementById('privacyModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showRegisterForm() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            
+            if (loginForm) loginForm.classList.remove('active');
+            if (registerForm) registerForm.classList.add('active');
+            clearErrors();
+        }
+
+        function showLoginForm() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            
+            if (registerForm) registerForm.classList.remove('active');
+            if (loginForm) loginForm.classList.add('active');
+            clearErrors();
+        }
+
+        // ===== UTILITY FUNCTIONS =====
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = message;
+                element.style.display = 'block';
+            }
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.form-error').forEach(element => {
+                element.textContent = '';
+                element.style.display = 'none';
+            });
+        }
+
+        function showNotification(message) {
+            // Remove existing notifications
+            document.querySelectorAll('.notification').forEach(n => n.remove());
+            
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // SUBSCRIPTION FUNCTIONS 
+        function subscribePlan(plan) {
+            if (!appState.currentUser) {
+                showNotification('Please login to subscribe!');
+                openAccountModal();
+                return;
+            }
+            
+            const planNames = {
+                casual: 'Casual Sip',
+                daily: 'Daily Grind',
+                connoisseur: 'Connoisseur'
+            };
+            
+            showNotification(`Subscribed to ${planNames[plan]} plan! Confirmation email sent.`);
+
+        }
+
+        function updateCalculator() {
+            const amount = parseInt(document.getElementById('coffeeAmount').value) || 12;
+            const frequency = document.getElementById('deliveryFrequency').value;
+            
+            // Update amount display
+            const amountDisplay = document.getElementById('amountDisplay');
+            if (amountDisplay) {
+                amountDisplay.textContent = `${amount} oz`;
+            }
+            
+            // Calculate price
+            let basePrice = amount * 1.5; 
+            
+            // Apply frequency multiplier
+            if (frequency === 'biweekly') basePrice *= 2.2; 
+            if (frequency === 'weekly') basePrice *= 4.3; 
+            
+            // Apply subscription discount (20%)
+            const finalPrice = basePrice * 0.8;
+            
+            // Update display
+            const calculatedPrice = document.getElementById('calculatedPrice');
+            const savingsInfo = document.getElementById('savingsInfo');
+            
+            if (calculatedPrice) {
+                calculatedPrice.textContent = `$${finalPrice.toFixed(2)}`;
+            }
+            
+            if (savingsInfo) {
+                const savings = basePrice - finalPrice;
+                savingsInfo.textContent = 
+                    `Save $${savings.toFixed(2)} (20%) compared to regular price`;
+            }
+        }
+
+ 
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const accountModal = document.getElementById('accountModal');
+            const privacyModal = document.getElementById('privacyModal');
+            
+            if (accountModal && accountModal.classList.contains('active') && 
+                event.target === accountModal) {
+                closeAccountModal();
+            }
+            
+            if (privacyModal && privacyModal.classList.contains('active') && 
+                event.target === privacyModal) {
+                closePrivacyModal();
+            }
+        });
+
+        // Close modals with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeAccountModal();
+                closePrivacyModal();
+            }
+        });
+    </script>
+</body>
+</html>
